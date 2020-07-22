@@ -10,8 +10,8 @@ if($action == 'ajax'){
 
 	$tables="tblprod";
 	$campos="*";
-	$sWhere=" tblprod.prod_name LIKE '%".$query."%'";
-	$sWhere.=" order by tblprod.prod_name";
+	$sWhere=" tblprod.apellido LIKE '%".$query."%'";
+	$sWhere.=" order by tblprod.apellido";
 	
 	
 	include 'pagination.php'; //include pagination file
@@ -40,11 +40,11 @@ if($action == 'ajax'){
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th class='text-center'>Código</th>
-						<th>Producto </th>
-						<th>Categoría </th>
-						<th class='text-center'>Stock</th>
-						<th class='text-right'>Precio</th>
+						<th class='text-center'>Nombres</th>
+						<th>Apellidos </th>
+						<th>Correo electronico </th>
+						<th class='text-center'>Telefono</th>
+						<th class='text-right'>Nota</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -53,21 +53,21 @@ if($action == 'ajax'){
 						$finales=0;
 						while($row = mysqli_fetch_array($query)){	
 							$product_id=$row['id'];
-							$prod_code=$row['prod_code'];
-							$prod_name=$row['prod_name'];
-							$prod_ctry=$row['prod_ctry'];
-							$prod_qty=$row['prod_qty'];
-							$price=$row['price'];						
+							$nombre=$row['nombre'];
+							$apellido=$row['apellido'];
+							$correo=$row['correo'];
+							$num_tel=$row['num_tel'];
+							$nota=$row['nota'];						
 							$finales++;
 						?>	
 						<tr class="<?php echo $text_class;?>">
-							<td class='text-center'><?php echo $prod_code;?></td>
-							<td ><?php echo $prod_name;?></td>
-							<td ><?php echo $prod_ctry;?></td>
-							<td class='text-center' ><?php echo $prod_qty;?></td>
-							<td class='text-right'><?php echo number_format($price,2);?></td>
+							<td class='text-center'><?php echo $nombre;?></td>
+							<td ><?php echo $apellido;?></td>
+							<td ><?php echo $correo;?></td>
+							<td class='text-center' ><?php echo $num_tel;?></td>
+							<td class='text-right'><?php echo $nota;?></td>
 							<td>
-								<a href="#"  data-target="#editProductModal" class="edit" data-toggle="modal" data-code='<?php echo $prod_code;?>' data-name="<?php echo $prod_name?>" data-category="<?php echo $prod_ctry?>" data-stock="<?php echo $prod_qty?>" data-price="<?php echo $price;?>" data-id="<?php echo $product_id; ?>"><i class="material-icons" data-toggle="tooltip" title="Editar" >&#xE254;</i></a>
+								<a href="#"  data-target="#editProductModal" class="edit" data-toggle="modal" data-nombre='<?php echo $nombre;?>' data-apellido="<?php echo $apellido?>" data-correo="<?php echo $correo?>" data-num_tel="<?php echo $num_tel?>" data-nota="<?php echo $nota;?>" data-id="<?php echo $product_id; ?>"><i class="material-icons" data-toggle="tooltip" title="Editar" >&#xE254;</i></a>
 								<a href="#deleteProductModal" class="delete" data-toggle="modal" data-id="<?php echo $product_id;?>"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
                     		</td>
 						</tr>

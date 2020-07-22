@@ -3,16 +3,16 @@
 		$errors[] = "Id vacío.";
 	} elseif (!empty($_POST['delete_id'])){
 	require_once ("../conexion.php");//Contiene funcion que conecta a la base de datos
-	// escaping, additionally removing everything that could be (html/javascript-) code
-    $id_producto=intval($_POST['delete_id']);
+	// escaping, additionally removing everything that could be (html/javascript-) nombre
+    $id_persona=intval($_POST['delete_id']);
 	
 
 	// DELETE FROM  database
-    $sql = "DELETE FROM  tblprod WHERE id='$id_producto'";
+    $sql = "DELETE FROM  tblprod WHERE id='$id_persona'";
     $query = mysqli_query($con,$sql);
     // if product has been added successfully
     if ($query) {
-        $messages[] = "El producto ha sido eliminado con éxito.";
+        $messages[] = "la persona ha sido eliminado con éxito.";
     } else {
         $errors[] = "Lo sentimos, la eliminación falló. Por favor, regrese y vuelva a intentarlo.";
     }

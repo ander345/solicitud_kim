@@ -1,22 +1,22 @@
 <?php
-	if (empty($_POST['name'])){
-		$errors[] = "Ingresa el nombre del producto.";
-	} elseif (!empty($_POST['name'])){
+	if (empty($_POST['apellido'])){
+		$errors[] = "Ingresa el nombre de la persona.";
+	} elseif (!empty($_POST['apellido'])){
 	require_once ("../conexion.php");//Contiene funcion que conecta a la base de datos
-	// escaping, additionally removing everything that could be (html/javascript-) code
-    $prod_code = mysqli_real_escape_string($con,(strip_tags($_POST["code"],ENT_QUOTES)));
-	$prod_name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
-	$prod_ctry = mysqli_real_escape_string($con,(strip_tags($_POST["category"],ENT_QUOTES)));
-	$stock = intval($_POST["stock"]);
-	$price = floatval($_POST["price"]);
+	// escaping, additionally removing everything that could be (html/javascript-) nombre
+    $nombre = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));
+	$apellido = mysqli_real_escape_string($con,(strip_tags($_POST["apellido"],ENT_QUOTES)));
+	$correo = mysqli_real_escape_string($con,(strip_tags($_POST["correo"],ENT_QUOTES)));
+	$num_tel = intval($_POST["num_tel"]);
+	$nota = mysqli_real_escape_string($con,(strip_tags($_POST["nota"],ENT_QUOTES)));
 	
 
 	// REGISTER data into database
-    $sql = "INSERT INTO tblprod(id, prod_code, prod_name, prod_ctry, prod_qty, price) VALUES (NULL,'$prod_code','$prod_name','$prod_ctry','$stock','$price')";
+    $sql = "INSERT INTO tblprod(id, nombre, apellido, correo, num_tel, nota) VALUES (NULL,'$nombre','$apellido','$correo','$num_tel','$nota')";
     $query = mysqli_query($con,$sql);
     // if product has been added successfully
     if ($query) {
-        $messages[] = "El producto ha sido guardado con éxito.";
+        $messages[] = "ha sido guardado con éxito.";
     } else {
         $errors[] = "Lo sentimos, el registro falló. Por favor, regrese y vuelva a intentarlo.";
     }
